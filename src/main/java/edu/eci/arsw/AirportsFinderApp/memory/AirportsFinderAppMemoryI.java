@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.eci.arsw.AirportsFinderApp.services;
+package edu.eci.arsw.AirportsFinderApp.memory;
 
 import edu.eci.arsw.AirportsFinderApp.model.Aeropuerto;
+import java.util.ArrayList;
 
 /**
  *
  * @author 2125509
  */
-
-public interface AirportsFinderAppServices {
+public interface AirportsFinderAppMemoryI {
+ 
     
-       public String getAirportByName(String name); 
-       
-       public void saveAirport(Aeropuerto airport); 
-
+     public ArrayList<Aeropuerto> buscarPorNombre(String name);
+     
+     public void guardar(Aeropuerto airport);
+             
 }
