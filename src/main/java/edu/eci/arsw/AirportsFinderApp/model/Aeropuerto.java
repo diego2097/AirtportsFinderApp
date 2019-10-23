@@ -12,6 +12,8 @@ import java.util.ArrayList;
  * @author 2125509
  */
 public class Aeropuerto {
+
+    
     
     
     
@@ -98,5 +100,9 @@ public class Aeropuerto {
         this.themes = themes;
     }
     
+    @Override
+    public String toString() {
+        return "Aeropuerto{" + "Id=" + Id + ", city=" + city + ", cityId=" + cityId + ", code=" + code + ", countryCode=" + countryCode + ", location=" + location + ", name=" + name + ", pointsOfSale=" + pointsOfSale + ", themes=" + themes + '}';
+    }
   
 }

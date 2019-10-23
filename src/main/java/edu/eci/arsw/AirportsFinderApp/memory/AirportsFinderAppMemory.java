@@ -22,7 +22,7 @@ public class AirportsFinderAppMemory implements AirportsFinderAppMemoryI {
     
     public ArrayList<Aeropuerto> buscarPorNombre(String name){
         ArrayList<Aeropuerto> rta = new ArrayList<Aeropuerto>();
-        for(int i=0; i < rta.size(); i++){
+        for(int i=0; i < cache.size(); i++){
             if (cache.get(i).getCity().equals(name)){
                 rta.add(cache.get(i));
             }
@@ -33,6 +33,9 @@ public class AirportsFinderAppMemory implements AirportsFinderAppMemoryI {
     
     public void guardar(Aeropuerto airport){
         cache.add(airport);
+        for(int i=0; i < cache.size(); i++){
+            System.out.println(cache.get(i).toString());
+        }
     }
     
     

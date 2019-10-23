@@ -12,20 +12,25 @@ var getAirportsByName = function(name,callback){
     });
   }
 
-  return {
-    getAirportsByName: getAirportsByName
-  };
-
-var save = function(){
+ var save = function(airport){
           
-    console.log(cuenta);
+    console.log(airport);
     $.ajax({
-        url: "cuentas/",
+        url: "airports/",
         type: "post",
-        data: cuenta,
+        data: airport,
         contentType: "application/json"
     });
 }
+
+
+
+  return {
+    save: save,
+    getAirportsByName: getAirportsByName
+  };
+
+
 
 
 })();
