@@ -46,7 +46,7 @@ public class AirportsFinderAppAPIController {
         }
     }
     
-    @RequestMapping(path = "/cuentas", method = POST)
+    @RequestMapping(path = "/airports", method = POST)
     public ResponseEntity<?> addCuenta(@RequestBody Aeropuerto aeropuerto
     ) {
         try {

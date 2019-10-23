@@ -5,7 +5,7 @@ var appModule = (function() {
         consultModule.getAirportsByName(ciudad,_generarTable)
     };
   
-   var _generarTable = function (name,json) {
+   var _generarTable = function (json) {
 		console.log(json)
 		$("#cuerpo").html("");
 		var total=0
@@ -21,6 +21,12 @@ var appModule = (function() {
 		});
 	  };
   
+    var saveInCache = function(){
+        
+
+
+    }; 
+
   
     return {
       consult: consult,
