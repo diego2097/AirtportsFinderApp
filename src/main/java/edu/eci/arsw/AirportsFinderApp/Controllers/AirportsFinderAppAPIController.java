@@ -5,7 +5,7 @@
  */
 package edu.eci.arsw.AirportsFinderApp.Controllers;
 
-import edu.eci.arsw.AirportsFinderApp.model.Aeropuerto;
+import edu.eci.arsw.AirportsFinderApp.memory.AirportsFinderAppMemoryI;
 import edu.eci.arsw.AirportsFinderApp.services.AirportsFinderAppServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,31 +30,32 @@ public class AirportsFinderAppAPIController {
     @Autowired
     AirportsFinderAppServices services;
 
-    @RequestMapping(method = GET, path = "airports/{name}")
+
+
+    @RequestMapping(method = GET, path = "/airports/{name}")
     public ResponseEntity<?> getAirports(@PathVariable(name = "name") String name) {
         try {
             //obtener datos que se enviaran a traves del API
             JSONParser parser = new JSONParser();
 
-            String airports = services.getAirportByName(name);
-            JSONArray jsonArray = (JSONArray) parser.parse(airports);
+            String airports = services.getAirportByNameMemory(name);
+            //System.out.println(airports);
+            if (airports == null){
+                System.out.println("consulta api");
+                airports = services.getAirportByName(name);
+                services.saveAirport(airports,name);
+            }
             
+            
+
+            JSONArray jsonArray = (JSONArray) parser.parse(airports);
             return new ResponseEntity<>(jsonArray, HttpStatus.ACCEPTED);
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            System.out.println(ex);
             return new ResponseEntity<>("400 bad request", HttpStatus.NOT_FOUND);
         }
     }
     
-    @RequestMapping(path = "/airports", method = POST)
-    public ResponseEntity<?> addAirport(@RequestBody Aeropuerto aeropuerto
-    ) {
-        try {
-            services.saveAirport(aeropuerto);
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        } catch (Exception ex) {
-            return new ResponseEntity<>("ERROR 403", HttpStatus.FORBIDDEN);
-        }
-    }
+
 
 }

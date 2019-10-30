@@ -5,7 +5,6 @@
  */
 package edu.eci.arsw.AirportsFinderApp.services;
 
-import edu.eci.arsw.AirportsFinderApp.model.Aeropuerto;
 
 /**
  *
@@ -15,7 +14,9 @@ import edu.eci.arsw.AirportsFinderApp.model.Aeropuerto;
 public interface AirportsFinderAppServices {
     
        public String getAirportByName(String name); 
+
+       public String getAirportByNameMemory(String name); 
        
-       public void saveAirport(Aeropuerto airport); 
+       public void saveAirport(String airport, String name); 
 
 }

@@ -5,8 +5,8 @@
  */
 package edu.eci.arsw.AirportsFinderApp.memory;
 
-import edu.eci.arsw.AirportsFinderApp.model.Aeropuerto;
-import java.util.ArrayList;
+import java.util.concurrent.ConcurrentHashMap;
+
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,42 +17,40 @@ import org.springframework.stereotype.Service;
 public class AirportsFinderAppMemory implements AirportsFinderAppMemoryI {
 
     
-    public ArrayList<Aeropuerto> cache; 
+    private ConcurrentHashMap map = new ConcurrentHashMap(); 
+    private ConcurrentHashMap time = new ConcurrentHashMap(); 
     
-    
-    public ArrayList<Aeropuerto> buscarPorNombre(String name){
-        ArrayList<Aeropuerto> rta = new ArrayList<Aeropuerto>();
-        for(int i=0; i < cache.size(); i++){
-            if (cache.get(i).getCity().equals(name)){
-                rta.add(cache.get(i));
+    public String buscarPorNombre(String name){
+        
+        try {
+            long current = System.currentTimeMillis();
+            long consult = (long)time.get(name); 
+            if (current - consult > 150000) {
+                map.remove(name);
+                System.out.println("pass");
             }
+            String airport = (String) map.get(name);
+            return airport;
         }
-        return rta;
-    }
-    
-    
-    public void guardar(Aeropuerto airport){
-        cache.add(airport);
-        for(int i=0; i < cache.size(); i++){
-            System.out.println(cache.get(i).toString());
+        catch (Exception ex){
+            return null;
         }
     }
     
     
-
-    public ArrayList<Aeropuerto> getCache() {
-        return cache;
+    public void guardar(String airport, String name){
+        map.put(name,airport);  
+        time.put(name,System.currentTimeMillis()); 
     }
 
-    public void setCache(ArrayList<Aeropuerto> cache) {
-        this.cache = cache;
+
+
+
+    public ConcurrentHashMap getMap() {
+        return map;
     }
-    
-    
-    
-    
-    
-  
-    
-    
+
+    public void setMap(ConcurrentHashMap map) {
+        this.map = map;
+    }   
 }

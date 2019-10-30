@@ -19,17 +19,9 @@ var appModule = (function() {
 					`<td>`+f.countryCode+`</td>`
 				);
         });
-        saveInCache(json);
       };
       
-  
-    var saveInCache = function(json){
-        json.map(function(f) {
-            consultModule.save(f);
-        });
-    }; 
-
-  
+   
     return {
       consult: consult,
     };

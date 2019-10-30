@@ -8,12 +8,12 @@ package edu.eci.arsw.AirportsFinderApp.services;
 import edu.eci.arsw.AirportsFinderApp.http.HttpConnectionExample;
 import edu.eci.arsw.AirportsFinderApp.memory.AirportsFinderAppMemory;
 import edu.eci.arsw.AirportsFinderApp.memory.AirportsFinderAppMemoryI;
-import edu.eci.arsw.AirportsFinderApp.model.Aeropuerto;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.SocketUtils;
 
 
 
@@ -35,8 +35,9 @@ public class AirportsFinderAppImpl  implements AirportsFinderAppServices{
     @Override
     public String getAirportByName(String name) {
         try {
-            url = url + "/airports/by-text?text=" + name;  
-            return HttpConnectionExample.getJson(url);
+            String url2 = url + "/airports/by-text?text=" + name;  
+            System.out.println(url2);
+            return HttpConnectionExample.getJson(url2);
             
         } catch (IOException ex) {
             Logger.getLogger(AirportsFinderAppImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -45,8 +46,13 @@ public class AirportsFinderAppImpl  implements AirportsFinderAppServices{
     }
 
     @Override
-    public void saveAirport(Aeropuerto airport) {
-        memory.guardar(airport);
+    public void saveAirport(String airport,String name) {
+        memory.guardar(airport,name);
 
+    }
+
+    @Override
+    public String getAirportByNameMemory(String name) {
+        return memory.buscarPorNombre(name);
     }
 }

@@ -5,7 +5,6 @@
  */
 package edu.eci.arsw.AirportsFinderApp.memory;
 
-import edu.eci.arsw.AirportsFinderApp.model.Aeropuerto;
 import java.util.ArrayList;
 
 /**
@@ -15,8 +14,8 @@ import java.util.ArrayList;
 public interface AirportsFinderAppMemoryI {
  
     
-     public ArrayList<Aeropuerto> buscarPorNombre(String name);
+     public String buscarPorNombre(String name);
      
-     public void guardar(Aeropuerto airport);
+     public void guardar(String airport,String name);
              
 }
