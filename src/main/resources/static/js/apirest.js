@@ -1,4 +1,4 @@
-const Url = 'http://localhost:8080/airports/';
+const Url = 'https://airportsfinderapp.herokuapp.com/airports';
 
 
 var consultModule = (function() {
