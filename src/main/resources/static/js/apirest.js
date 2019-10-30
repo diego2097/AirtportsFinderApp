@@ -1,4 +1,4 @@
-const Url = 'https://airportsfinderapp.herokuapp.com/airports';
+const Url = 'https://airportsfinderapp.herokuapp.com/airports/';
 
 
 var consultModule = (function() {
