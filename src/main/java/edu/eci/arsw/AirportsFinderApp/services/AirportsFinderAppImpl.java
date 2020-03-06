@@ -36,7 +36,6 @@ public class AirportsFinderAppImpl  implements AirportsFinderAppServices{
     public String getAirportByName(String name) {
         try {
             String url2 = url + "/airports/by-text?text=" + name;  
-            System.out.println(url2);
             return HttpConnectionExample.getJson(url2);
             
         } catch (IOException ex) {
