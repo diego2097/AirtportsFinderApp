@@ -20,3 +20,10 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
+- task: AzureWebAppContainer@1
+  inputs:
+    azureSubscription: 'Azure for Students(1)(29786cb8-457b-4de2-82b1-7c160b199985)'
+    appName: 'AirportsFinderApp'
+    deployToSlotOrASE: true
+    resourceGroupName: 'TACS'
+    slotName: 'production'
