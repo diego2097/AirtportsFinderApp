@@ -2,7 +2,7 @@
 
 
 
-## para ejecutar el proyecto utilzar el comando 
+## Para ejecutar el proyecto se debe utilzar el comando 
 
 
 ```
